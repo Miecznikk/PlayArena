@@ -1,7 +1,7 @@
 from django.db import models
 
 from Teams.models import Team
-from Players.models import Player
+from Users.models import Player
 
 
 class Stadium(models.Model):
