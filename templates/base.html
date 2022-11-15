@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}PlayArena{% endblock title %}</title>
+
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <span>zalogowano jako: {{ user }}</span>
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

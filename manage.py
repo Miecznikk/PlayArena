@@ -3,7 +3,7 @@
 import os
 import sys
 
-#commenttest 5
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PlayArena.settings')
@@ -20,4 +20,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-#KOT FILEMON
