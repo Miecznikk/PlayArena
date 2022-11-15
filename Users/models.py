@@ -12,7 +12,7 @@ class App_User(models.Model):
     first_name = models.CharField(max_length=30, null=False)
     second_name = models.CharField(max_length=30, null=True, blank=True)
     surname = models.CharField(max_length=30)
-    image = models.ImageField(upload_to='images/players', null=False, default='images/default_profile_picture')
+    image = models.ImageField(upload_to='images/users', null=False, default='images/default_profile_picture')
 
     def __str__(self):
         return f'{self.first_name} {self.second_name+" " if self.second_name else ""}{self.surname}'
