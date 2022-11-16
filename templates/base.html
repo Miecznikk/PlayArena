@@ -7,7 +7,7 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <span>zalogowano jako: {{ user }}</span>
+        <p>zalogowano jako: {{ user }}</p>
     {% endif %}
     {% block content %}
 

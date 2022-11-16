@@ -23,7 +23,7 @@ class Player(App_User):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     position = models.ForeignKey(Position,on_delete=models.CASCADE,null=True)
     shirt_number = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(99)],null=True)
-    team = models.ForeignKey(Team,on_delete=models.CASCADE,null=True)
+    team = models.ForeignKey(Team,on_delete=models.SET_NULL,null=True)
     captain = models.BooleanField(null=False,default=False)
 
 class Referee(App_User):
@@ -31,5 +31,3 @@ class Referee(App_User):
 
 # Create your models here.
 
-
-# Create your models here.
