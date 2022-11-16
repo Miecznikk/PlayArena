@@ -25,4 +25,5 @@ urlpatterns = [
     path('',Users.views.home_view,name='home'),
     path('home/',Users.views.home_view,name='home'),
     path('',include('Users.urls',namespace='users')),
+    path('',include('Teams.urls',namespace='teams'))
 ]
