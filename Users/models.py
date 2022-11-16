@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from Teams.models import Team
+from django.contrib.auth.models import User
 
 class Position(models.Model):
     title = models.CharField(max_length=30)
@@ -19,9 +20,10 @@ class App_User(models.Model):
 
 
 class Player(App_User):
-    position = models.ForeignKey(Position,on_delete=models.CASCADE)
-    shirt_number = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(99)])
-    team = models.ForeignKey(Team,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    position = models.ForeignKey(Position,on_delete=models.CASCADE,null=True)
+    shirt_number = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(99)],null=True)
+    team = models.ForeignKey(Team,on_delete=models.CASCADE,null=True)
     captain = models.BooleanField(null=False,default=False)
 
 class Referee(App_User):
