@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>team detail</p>
+    <p>{{ team }}</p>
+    <ul>
+    {% for player in players %}
+        <li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

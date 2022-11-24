@@ -2,6 +2,8 @@ from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from Teams.models import Team
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 class Position(models.Model):
     title = models.CharField(max_length=30)
@@ -25,6 +27,9 @@ class Player(App_User):
     shirt_number = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(99)],null=True)
     team = models.ForeignKey(Team,on_delete=models.SET_NULL,null=True)
     captain = models.BooleanField(null=False,default=False)
+
+    def get_absolute_url(self):
+        return reverse('users:player_detail',args=[self.id])
 
 class Referee(App_User):
     pass

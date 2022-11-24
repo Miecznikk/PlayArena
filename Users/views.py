@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .forms import RegisterForm
 from .models import Position,Player
 from django.contrib.auth import login
@@ -37,3 +37,6 @@ def update_user_profile(sender,instance,created,**kwargs):
     instance.player.save()
 
 
+def player_detail(request,id):
+    player = get_object_or_404(Player,id=id)
+    return render(request,'players/player_detail.html',{'player':player})

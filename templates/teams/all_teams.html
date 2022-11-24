@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for team in teams %}
+        <p><a href="{{ team.get_absolute_url }}">{{ team }}</a></p>
+        <img src="{{ team.image.url }}" alt="" style="width:150px;height:150px">
+    {% endfor %}
+{% endblock %}

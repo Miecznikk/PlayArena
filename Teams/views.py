@@ -1,8 +1,11 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
 from .forms import RegisterTeamForm
 from Users.models import Player
+from Teams.models import Team
+
+
 
 @login_required(login_url='/login')
 def team_register(request):
@@ -22,4 +25,12 @@ def team_register(request):
 
     return render(request,'teams/register.html',{'form':form})
 
+def teams(request):
+    teams = Team.objects.all()
+    return render(request,'teams/all_teams.html',{'teams':teams})
+
+def team_detail(request,slug):
+    team = get_object_or_404(Team,slug=slug)
+    players = Player.objects.filter(team=team)
+    return render(request,'teams/team_detail.html',{'team':team,'players':players})
 # Create your views here.
