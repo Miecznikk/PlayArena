@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Matches',
     'Users',
     'Teams',
+    'Messages',
     'crispy_forms',
     'crispy_bootstrap5'
 ]
