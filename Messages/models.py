@@ -1,6 +1,7 @@
 from django.db import models
 from Users.models import App_User
 from django.utils import timezone
+from Teams.models import Team
 from django.contrib.auth.models import User
 
 
@@ -16,4 +17,7 @@ class Message(models.Model):
         if not self.id:
             self.created = timezone.now()
         return super(Message,self).save(*args,**kwargs)
+
+class Invite(Message):
+    invited_to = models.ForeignKey(Team,on_delete=models.CASCADE)
 # Create your models here.

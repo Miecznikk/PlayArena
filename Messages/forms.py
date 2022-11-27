@@ -1,5 +1,5 @@
 from django import forms
-from .models import Message
+from .models import Message, Invite
 from django.contrib.auth.models import User
 
 class SendMessage(forms.ModelForm):
@@ -19,3 +19,10 @@ class SendMessage(forms.ModelForm):
         self.user = kwargs.pop('user')
         super(SendMessage, self).__init__(*args,**kwargs)
         self.fields['receiver'].queryset = User.objects.all().exclude(id = self.user.id)
+
+class SendInvite(forms.ModelForm):
+    receiver = forms.ModelChoiceField(required=True,label="Odbiorca",queryset=User.objects.filter(player__team=None).exclude(player=None))
+
+    class Meta:
+        model = Invite
+        fields = ['receiver']

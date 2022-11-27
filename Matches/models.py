@@ -1,8 +1,6 @@
 from django.db import models
-
-from Teams.models import Team
 from Users.models import Player
-
+from Teams.models import Team
 
 class Stadium(models.Model):
     name = models.CharField(max_length=30)

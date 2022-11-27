@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {{ player }}
+    <p>{{ player }}</p>
+    <img src="{{ player.image.url }}" width="150px" height="150px">
+    <p>{{ player.get_scored_goals|length }}</p>
 {% endblock %}

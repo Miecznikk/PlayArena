@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
-from Teams.models import Team
 from django.contrib.auth.models import User
+from Teams.models import Team
+
 from django.urls import reverse
 
 def get_name(self):
@@ -19,7 +20,7 @@ class App_User(models.Model):
     first_name = models.CharField(max_length=30, null=False)
     second_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30)
-    image = models.ImageField(upload_to='images/users', null=False, default='images/default_profile_picture')
+    image = models.ImageField(upload_to='images/users', null=False, default='images/users/default_profile.png')
     mod = models.BooleanField(default=False,null=False)
 
     def __str__(self):
@@ -35,6 +36,10 @@ class Player(App_User):
 
     def get_absolute_url(self):
         return reverse('users:player_detail',args=[self.id])
+
+    def get_scored_goals(self):
+        from Matches.models import Goal
+        return len(Goal.objects.filter(scorer=self))
 
 class Referee(App_User):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)

@@ -13,7 +13,11 @@
     {% endif %}
     <ul>
         <li><a href="{% url 'teams:teams' %}">Drużyny</a></li>
-        <li><a href=""></a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'messages:my_messages' %}">Wiadomości</a></li>
+        {% endif %}
+
         <li>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}">Wyloguj</a>

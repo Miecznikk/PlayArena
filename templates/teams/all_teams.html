@@ -2,7 +2,7 @@
 
 {% block content %}
     {% for team in teams %}
-        <p><a href="{{ team.get_absolute_url }}">{{ team }}</a></p>
+        <a class="fw-bold text-decoration-none text-black" href="{{ team.get_absolute_url }}">{{ team }}</a>
         <img src="{{ team.image.url }}" alt="" style="width:150px;height:150px">
     {% endfor %}
 {% endblock %}

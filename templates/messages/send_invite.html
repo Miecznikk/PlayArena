@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+    <form method="POST" class="mx-auto d-block mt-5 text-center" style="width:300px">
+        <h4>Zaproś do drużyny</h4>
+        {{ form|crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Zaproś</button>
+    </form>
+
+{% endblock %}

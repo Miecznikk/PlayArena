@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for message in messages %}
+        <p>{{ message.sender }}</p>
+        <p>{{ message.title }}</p>
+        <p>{{ message.description }}</p>
+        <a class="btn btn-primary" href="{% url 'messages:send_message_to' message.sender.id %}">Odpowiedz</a>
+        <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Usuń</a>
+        <hr>
+    {% endfor %}
+    <a class="btn btn-primary" href="{% url 'messages:send_message' %}">Wyślij wiadomość</a>
+{% endblock %}
