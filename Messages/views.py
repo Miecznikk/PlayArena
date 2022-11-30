@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import SendMessage,SendInvite
-from .models import Message
+from .models import Message,Invite
 
 @login_required(login_url='/login')
 def my_messages_view(request):
@@ -38,5 +38,14 @@ def send_invite_view(request):
     else:
         form = SendInvite()
     return render(request,'messages/send_invite.html',{'form':form})
+
+def accept_invite(request,message):
+    msg = get_object_or_404(Invite,id = message)
+    if request.user.player.team is None:
+        request.user.player.team = msg.invited_to
+        request.user.player.save()
+        msg.delete()
+    return redirect('messages:my_messages')
+
 # Create your views here.
 
