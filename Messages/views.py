@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import SendMessage,SendInvite
+from .forms import SendMessage,SendInvite,SendChallenge
 from .models import Message,Invite
 
 @login_required(login_url='/login')
@@ -47,5 +47,21 @@ def accept_invite(request,message):
         msg.delete()
     return redirect('messages:my_messages')
 
+def send_challenge(request,challenged_team = None):
+    if request.method == "POST":
+        form = SendChallenge(request.POST,team = request.user.player.team)
+        if form.is_valid():
+            form.instance.sender = request.user
+            form.instance.challenging_team = request.user.player.team
+            cd = form.cleaned_data
+            team = cd.get('challenged_team')
+            form.instance.receiver = team.get_captain()
+            form.instance.description = f'Rzucono ci wyzwanie od drużyny {request.user.player.team} dnia' \
+                                        f'{cd.get("date")} na boisku {cd.get("stadium")}'
+            form.save()
+            return redirect('home')
+    else:
+        form = SendChallenge(team = request.user.player.team,initial={'challenged_team':challenged_team})
+    return render(request,'messages/send_challenge.html',{'form':form})
 # Create your views here.
 

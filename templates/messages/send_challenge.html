@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>send challenge</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Wyzwij</button>
+    </form>
+{% endblock %}

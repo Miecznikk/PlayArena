@@ -40,7 +40,7 @@ class Player(App_User):
 
     def get_scored_goals(self):
         from Matches.models import Goal
-        return len(Goal.objects.filter(scorer=Player.objects.filter(name = 'Jan')))
+        return len(Goal.objects.filter(scorer = self))
 
 Player.objects.filter(first_name='Jan')
 
