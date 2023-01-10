@@ -17,7 +17,24 @@
         {% if user.is_authenticated %}
         <li><a href="{% url 'messages:my_messages' %}">Wiadomości</a></li>
         {% endif %}
+        <li>
+            <a href="{% url 'matches:all_matches' %}">
+                Mecze
+            </a>
+        </li>
 
+        {% if user.isinst == 'player' %}
+            {% if user.player.team == None %}
+                <li>
+                    <a href="{% url 'teams:team_register' %}">Załóż drużynę</a>
+                </li>
+            {% endif %}
+            {% if user.player.captain %}
+                <li>
+                    <a href="{% url 'messages:send_challenge' %}">Rzuć wyzwanie</a>
+                </li>
+            {% endif %}
+        {% endif %}
         <li>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}">Wyloguj</a>
@@ -25,6 +42,8 @@
                 <a href="{% url 'users:login' %}">Zaloguj</a>
             {% endif %}
         </li>
+
+
     </ul>
     {% block content %}
 

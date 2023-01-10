@@ -1,5 +1,5 @@
 from django.db import models
-from Users.models import Player
+from Users.models import Player,Referee
 from Teams.models import Team
 
 class Stadium(models.Model):
@@ -15,11 +15,13 @@ class Match(models.Model):
 
     stadium = models.ForeignKey(Stadium,null=True,on_delete=models.SET_NULL)
 
+    referee = models.ForeignKey(Referee,null=True,related_name='referee',on_delete=models.SET_NULL)
+
     date = models.DateField(null=False)
     status = models.BooleanField(default=False,null=False)
 
     def __str__(self):
-        return f'{self.team1} - {self.team2}'
+        return f'{self.team1} - {self.team2} | {self.stadium} | {self.date} | {"Zakończony" if self.status else "Do rozegrania"}'
 
 class Goal(models.Model):
     scorer = models.ForeignKey(Player,on_delete=models.CASCADE)

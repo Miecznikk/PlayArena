@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% load crispy_forms_tags %}
     <p>send challenge</p>
-    <form method="POST">
+    <form method="POST" class="mx-auto d-block mt-5 text-center" style="width:300px">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Wyzwij</button>
+        {{ form|crispy }}
+        <button class="btn btn-primary" type="submit">Wyzwij</button>
     </form>
 {% endblock %}

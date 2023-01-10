@@ -4,7 +4,7 @@ from .models import Match, Stadium, Goal
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ['team1','team2','stadium','date','status']
+    list_display = ['team1','team2','stadium','date','status','referee']
 
 @admin.register(Stadium)
 class StadiumAdmin(admin.ModelAdmin):

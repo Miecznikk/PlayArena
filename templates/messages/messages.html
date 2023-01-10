@@ -12,8 +12,8 @@
             <a class="btn btn-primary" href="{% url 'messages:accept_invite' message.id %}">Przyjmij</a>
             <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Odrzuć</a>
         {% elif message.check_instance == 'challenge' %}
-            <a class="btn btn-primary">Przyjmij</a>
-            <a class="btn btn-danger">Odrzuć</a>
+            <a class="btn btn-primary" href="{% url 'messages:accept_challenge' message.id %}">Przyjmij</a>
+            <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Odrzuć</a>
         {% endif %}
 
         <hr>

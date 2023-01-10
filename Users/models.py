@@ -2,13 +2,21 @@ from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.contrib.auth.models import User
 from Teams.models import Team
-
+from random import choice
 from django.urls import reverse
 
 def get_name(self):
     return f'{self.first_name} {self.last_name}'
 
+def isinst(self):
+    if hasattr(self,'player'):
+        return 'player'
+    elif hasattr(self,'referee'):
+        return 'referee'
+    return 'none'
+
 User.add_to_class("__str__",get_name)
+User.add_to_class("isinst",isinst)
 
 class Position(models.Model):
     title = models.CharField(max_length=30)
@@ -24,10 +32,6 @@ class App_User(models.Model):
 
     image = models.ImageField(upload_to='images/users', null=False, default='images/users/default_profile.png')
 
-    def __str__(self):
-        return f'{self.first_name} {self.second_name+" " if self.second_name else ""}{self.last_name + " [ADMIN]" if self.mod else self.last_name}'
-
-
 class Player(App_User):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     position = models.ForeignKey(Position,on_delete=models.CASCADE,null=True,blank=True)
@@ -42,10 +46,14 @@ class Player(App_User):
         from Matches.models import Goal
         return len(Goal.objects.filter(scorer = self))
 
-Player.objects.filter(first_name='Jan')
 
 class Referee(App_User):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+
+    @classmethod
+    def get_suitable_referee(cls):
+        return choice(cls.objects.all())
+
 
 # Create your models here.
 

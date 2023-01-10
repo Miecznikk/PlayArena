@@ -1,5 +1,5 @@
 from django import forms
-
+from datetime import date
 from .models import Message, Invite, Challenge
 from django.contrib.auth.models import User
 from Teams.models import Team
@@ -40,7 +40,18 @@ class SendChallenge(forms.ModelForm):
     class Meta:
         model = Challenge
         fields = ['challenged_team','stadium','date']
-
+        labels = {
+            'challenged_team': 'Drużyna',
+            'stadium': 'Boisko',
+            'date': 'Data'
+        }
         widgets = {
             'date':DateInput()
         }
+
+    def clean(self):
+        cd = self.cleaned_data
+        if cd.get('date') <= date.today():
+            raise forms.ValidationError('Pomiędzy dniem dzisiejszym a meczowym musi być co najmniej jeden dzień')
+        if cd.get('challenged_team') == self.team:
+            raise forms.ValidationError('Nie możesz rzucić wyzwania samemu sobie!')

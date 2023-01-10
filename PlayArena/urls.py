@@ -30,6 +30,7 @@ urlpatterns = [
     path('',include('Users.urls',namespace='users')),
     path('',include('Teams.urls',namespace='teams')),
     path('',include('Messages.urls',namespace='messages')),
+    path('',include('Matches.urls',namespace='matches')),
     path('',include('django.contrib.auth.urls')),
 ]
 

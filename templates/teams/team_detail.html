@@ -5,7 +5,7 @@
     <p>{{ team }}</p>
     <ul>
     {% for player in players %}
-        <li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
+        <li><a href="{{ player.get_absolute_url }}">{{ player.user }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

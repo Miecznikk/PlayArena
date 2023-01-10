@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import SendMessage,SendInvite,SendChallenge
-from .models import Message,Invite
+from .models import Message,Invite,Challenge
+from Matches.models import Match
+from datetime import date
+from Users.models import Referee
 
 @login_required(login_url='/login')
 def my_messages_view(request):
@@ -20,11 +23,13 @@ def send_message_view(request,receiver = None):
         form = SendMessage(user=request.user,initial={'receiver':receiver,'sender':request.user})
     return render(request,'messages/send_message.html',{'form':form})
 
+@login_required(login_url='/login')
 def delete_message(request,message):
     msg = get_object_or_404(Message,id = message)
     msg.delete()
     return redirect('messages:my_messages')
 
+@login_required(login_url='/login')
 def send_invite_view(request):
     if request.method == "POST":
         form = SendInvite(request.POST)
@@ -39,6 +44,7 @@ def send_invite_view(request):
         form = SendInvite()
     return render(request,'messages/send_invite.html',{'form':form})
 
+@login_required(login_url='/login')
 def accept_invite(request,message):
     msg = get_object_or_404(Invite,id = message)
     if request.user.player.team is None:
@@ -47,6 +53,7 @@ def accept_invite(request,message):
         msg.delete()
     return redirect('messages:my_messages')
 
+@login_required(login_url='/login')
 def send_challenge(request,challenged_team = None):
     if request.method == "POST":
         form = SendChallenge(request.POST,team = request.user.player.team)
@@ -63,5 +70,16 @@ def send_challenge(request,challenged_team = None):
     else:
         form = SendChallenge(team = request.user.player.team,initial={'challenged_team':challenged_team})
     return render(request,'messages/send_challenge.html',{'form':form})
+
+@login_required(login_url='/login')
+def accept_challenge(request,message):
+    msg = get_object_or_404(Challenge,id = message)
+    if date.today() < msg.date:
+        Match.objects.create(team1 = msg.challenging_team,team2 = msg.challenged_team,stadium = msg.stadium,
+                             date=msg.date,status = False,referee=Referee.get_suitable_referee())
+    msg.delete()
+    return redirect('messages:my_messages')
+
+
 # Create your views here.
 
