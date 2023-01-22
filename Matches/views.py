@@ -16,7 +16,7 @@ def my_matches(request):
         matches = Match.objects.filter(Q(team1=request.user.player.team) | Q(team2=request.user.player.team))
     else:
         matches = Match.objects.filter(referee=request.user.referee)
-    matches_played = matches.filter(date__lt=date.today())
+    matches_played = matches.filter(date__lte=date.today())
     matches_upcoming = matches.filter(date__gt=date.today())
     return render(request,'matches/my_matches.html',{'matches_played':matches_played,'matches_upcoming':matches_upcoming})
 
@@ -45,3 +45,19 @@ def post_score(request,id):
         'players_ids':players_ids
     }
     return render(request,'matches/post_score.html',context=context)
+
+def match_detail(request,id):
+    match = get_object_or_404(Match,id=id)
+    goals_dict = {}
+    goals = Goal.objects.filter(match = match)
+    for goal in goals:
+        if f'{goal.scorer} - {goal.scorer.team}' not in goals_dict:
+            goals_dict[f'{goal.scorer} - {goal.scorer.team}'] = 1
+        else:
+            goals_dict[f'{goal.scorer} - {goal.scorer.team}'] += 1
+
+    context = {
+        'match' : match,
+        'goals' : goals_dict
+    }
+    return render(request,'matches/match_detail.html',context=context)

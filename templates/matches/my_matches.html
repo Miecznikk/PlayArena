@@ -7,7 +7,8 @@
             <a href="{% url 'matches:post_score' match.id %}">{{ match }}</a>
             <br>
         {% else %}
-            <p>{{ match }}</p>
+            <a href="{% url 'matches:match_detail' match.id %}">{{ match }}</a>
+            <br>
         {% endif %}
     {% endfor %}
     <br>

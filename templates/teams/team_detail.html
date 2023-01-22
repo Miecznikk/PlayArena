@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>team detail</p>
-    <p>{{ team }}</p>
+    <h1>{{ team }}</h1>
+    <img src="{{ team.image.url }}" style="height: 100px;width: 100px">
+    <h3>Zawodnicy: </h3>
     <ul>
     {% for player in players %}
         <li><a href="{{ player.get_absolute_url }}">{{ player.user }}</a></li>
     {% endfor %}
     </ul>
+    <h3>Statystyki: </h3>
+    <p>Mecze rozegrane: {{ team.get_matches|length }}</p>
+    <p>Zwycięstwa: {{ team.get_wins }}</p>
+    <p>Porażki: {{ team.get_loses }}</p>
+    <p>Remisy: {{ team.get_draws }}</p>
+    <p>Bramki strzelone: {{ team.get_goals_scored }}</p>
+    <p>Bramki stracone: {{ team.get_goals_lost }}</p>
+    {% if user.is_authenticated and user.isinst == 'player' %}
+        {% if user.player.captain and user.player.team != team %}
+            <a href="{% url 'messages:send_challenge_to' team.id %}" class="btn btn-primary">Rzuć wyzwanie</a>
+        {% endif %}
+    {% endif %}
 {% endblock %}

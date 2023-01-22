@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>{{ player.get_name }}</p>
+    <p>{{ player }}</p>
     <img src="{{ player.image.url }}" width="150px" height="150px">
-    <p>{{ player.get_scored_goals }}</p>
+    <p>Numer na koszulce: {{ player.shirt_number|yesno:'player.shirt_number,Nieokreslony' }}</p>
+    <p>Bramki strzelone: {{ player.get_scored_goals }}</p>
+    <p>Zawodnik meczu: {{ player.get_motm }}</p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'messages:send_message_to' player.id %}" class="btn btn-primary">Wyślij wiadomość</a>
+    {% endif %}
 {% endblock %}

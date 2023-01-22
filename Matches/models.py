@@ -25,11 +25,24 @@ class Match(models.Model):
     def __str__(self):
         return f'{self.team1} - {self.team2} | {self.stadium} | {self.date} | {self.get_score() if self.status else "Do rozegrania"}'
 
-    def get_score(self):
-        goals1 = len(Goal.objects.filter(team=self.team1))
-        goals2 = len(Goal.objects.filter(team=self.team2))
+    def get_goals(self):
+        goals1 = len(Goal.objects.filter(match=self, team=self.team1))
+        goals2 = len(Goal.objects.filter(match=self, team=self.team2))
 
+        return goals1, goals2
+
+    def get_score(self):
+        goals1,goals2 = self.get_goals()
         return f'{goals1} : {goals2}'
+
+    def get_winner(self):
+        goals1,goals2 = self.get_goals()
+        if goals1 > goals2:
+            return self.team1
+        elif goals1 < goals2:
+            return self.team2
+        return None
+
 
 class Goal(models.Model):
     scorer = models.ForeignKey(Player,null=True,on_delete=models.SET_NULL)

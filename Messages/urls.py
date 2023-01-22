@@ -12,4 +12,5 @@ urlpatterns = [
     path('messages/accept_invite/?<int:message>',views.accept_invite,name='accept_invite'),
     path('messages/accept_challenge/?<int:message>',views.accept_challenge,name='accept_challenge'),
     path('messages/send_challenge',views.send_challenge,name='send_challenge'),
+    path('messages/send_challenge/?P<int:challenged_team>',views.send_challenge,name='send_challenge_to')
 ]

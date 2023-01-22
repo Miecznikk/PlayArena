@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>{{ match.team1 }} - {{ match.team2 }}</h3>
+    <h3>{{ match.get_score }}</h3>
+    <h4>Zawodnik meczu: {{ match.motm }}</h4>
+    <h4>Strzelcy bramek: </h4>
+    <ul>
+        {% for key,value in goals.items %}
+            <li>{{ key }} : {{ value }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

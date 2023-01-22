@@ -2,7 +2,11 @@
 
 {% block content %}
     {% for match in matches %}
-        {{ match }}
-        <br>
+        {% if match.status %}
+            <a href="{% url 'matches:match_detail' match.id %}">{{ match }}</a>
+            <br>
+        {% else %}
+            <p>{{ match }}</p>
+        {% endif %}
     {% endfor %}
 {% endblock %}

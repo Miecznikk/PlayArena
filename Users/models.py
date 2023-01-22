@@ -49,6 +49,10 @@ class Player(App_User):
         from Matches.models import Goal
         return len(Goal.objects.filter(scorer = self))
 
+    def get_motm(self):
+        from Matches.models import Match
+        return len(Match.objects.filter(motm = self))
+
 
 class Referee(App_User):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
