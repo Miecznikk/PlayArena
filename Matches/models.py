@@ -17,14 +17,22 @@ class Match(models.Model):
 
     referee = models.ForeignKey(Referee,null=True,related_name='referee',on_delete=models.SET_NULL)
 
+    motm = models.ForeignKey(Player,null=True,related_name='motm',on_delete=models.SET_NULL)
+
     date = models.DateField(null=False)
     status = models.BooleanField(default=False,null=False)
 
     def __str__(self):
-        return f'{self.team1} - {self.team2} | {self.stadium} | {self.date} | {"Zakończony" if self.status else "Do rozegrania"}'
+        return f'{self.team1} - {self.team2} | {self.stadium} | {self.date} | {self.get_score() if self.status else "Do rozegrania"}'
+
+    def get_score(self):
+        goals1 = len(Goal.objects.filter(team=self.team1))
+        goals2 = len(Goal.objects.filter(team=self.team2))
+
+        return f'{goals1} : {goals2}'
 
 class Goal(models.Model):
-    scorer = models.ForeignKey(Player,on_delete=models.CASCADE)
+    scorer = models.ForeignKey(Player,null=True,on_delete=models.SET_NULL)
     match = models.ForeignKey(Match,on_delete=models.CASCADE)
     team = models.ForeignKey(Team,on_delete=models.CASCADE)
 

@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for match in matches %}
+    <p>MECZE ROZEGRANE:</p>
+    {% for match in matches_played %}
+        {% if user.isinst == 'referee' and not match.status %}
+            <a href="{% url 'matches:post_score' match.id %}">{{ match }}</a>
+            <br>
+        {% else %}
+            <p>{{ match }}</p>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <p>MECZE NADCHODZĄCE:</p>
+    {% for match in matches_upcoming %}
         {{ match }}
         <br>
     {% endfor %}

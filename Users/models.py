@@ -32,6 +32,9 @@ class App_User(models.Model):
 
     image = models.ImageField(upload_to='images/users', null=False, default='images/users/default_profile.png')
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
 class Player(App_User):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     position = models.ForeignKey(Position,on_delete=models.CASCADE,null=True,blank=True)

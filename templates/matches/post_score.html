@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    {{ match }}
+    <form class="mx-auto d-block mt-5 text-center" style="width:600px" method="post">
+        {% csrf_token %}
+        <h1>{{ match.team1 }}</h1>
+        {% for player in players1 %}
+            <label for="{{ player.id }}">{{ player }}</label>
+            <input id="{{ player.id }}" type="number" min="0" max="100" value="0" data-team="1" name="{{ player.id }}" onchange="update_score()">
+            <input type="radio" name="motm" value="{{ player.id }}">
+            <br>
+        {% endfor %}
+
+        <h1>{{ match.team2 }}</h1>
+        {% for player in players2 %}
+            <label for="{{ player.id }}">{{ player }}</label>
+            <input id="{{ player.id }}" type="number" min="0" max="100" value="0" data-team="2" name="{{ player.id }}" onchange="update_score()">
+            <input type="radio" name="motm" required value="{{ player.id }}">
+            <br>
+        {% endfor %}
+        <span class="fs-2">{{ match.team1 }} </span><span id="score" class="fw-bold fs-1">0:0</span><span class="fs-2"> {{ match.team2 }}</span>
+        <br>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+    </form>
+
+<script>
+    let list = {{ players_ids }};
+    const score_span = document.getElementById('score');
+
+    function update_score(){
+        let team1_score = 0;
+        let team2_score = 0;
+
+        for(let i=0;i<list.length;i++){
+            const player_score = document.getElementById(list[i]);
+            if(parseInt(player_score.dataset.team) === 1){
+                team1_score += parseInt(player_score.value) ? parseInt(player_score.value) : 0;
+            }
+            else{
+                team2_score += parseInt(player_score.value) ? parseInt(player_score.value) : 0;
+            }
+        }
+        score_span.innerHTML = team1_score + ':' + team2_score
+    }
+
+</script>
+{% endblock %}
+
