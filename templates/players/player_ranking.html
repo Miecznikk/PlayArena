@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="table table-stripped table-bordered mx-auto w-75">
+        <thead>
+            <tr>
+                <th class="text-center col-md-1" scope="col">#</th>
+                <th class="text-center col-md-7" scope="col">Gracz</th>
+                <th class="text-center col-md-2" scope="col">Bramki</th>
+                <th class="text-center col-md-2" scope="col">MOTM</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+                <tr>
+                    <th class="text-center col-md-1">{{ forloop.counter }}</th>
+                    <th class="text-center col-md-7"><a class="text-decoration-none fw-bold" href="{{ player.get_absolute_url }}">{{ player }}</a></th>
+                    <th class="text-center col-md-2">{{ player.get_scored_goals }}</th>
+                    <th class="text-center col-md-2">{{ player.get_motm }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

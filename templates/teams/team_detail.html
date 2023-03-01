@@ -6,7 +6,7 @@
     <h3>Zawodnicy: </h3>
     <ul>
     {% for player in players %}
-        <li><a href="{{ player.get_absolute_url }}">{{ player.user }}</a></li>
+        <li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
     {% endfor %}
     </ul>
     <h3>Statystyki: </h3>

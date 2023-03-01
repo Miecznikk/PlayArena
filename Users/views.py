@@ -24,7 +24,14 @@ def sign_up(request):
 def home_view(request):
     return render(request,'home.html',{})
 
-
 def player_detail(request,id):
     player = get_object_or_404(Player,id=id)
     return render(request,'players/player_detail.html',{'player':player})
+
+def player_ranking(request):
+    import json
+    players = sorted(Player.objects.all(),key=lambda x:x.get_scored_goals(),reverse=True)
+    context = {
+        'players':players
+    }
+    return render(request,'players/player_ranking.html',context=context)

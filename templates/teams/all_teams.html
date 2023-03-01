@@ -4,5 +4,6 @@
     {% for team in teams %}
         <a class="fw-bold text-decoration-none text-black" href="{{ team.get_absolute_url }}">{{ team }}</a>
         <img src="{{ team.image.url }}" alt="" style="width:150px;height:150px">
+        <br>
     {% endfor %}
 {% endblock %}

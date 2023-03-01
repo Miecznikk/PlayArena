@@ -33,7 +33,7 @@ class App_User(models.Model):
     image = models.ImageField(upload_to='images/users', null=False, default='images/users/default_profile.png')
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.second_name+" " if self.second_name else " "}{self.last_name}'
 
 class Player(App_User):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)

@@ -9,5 +9,6 @@ urlpatterns = [
     path('register/',views.sign_up,name='register'),
     path('login/',v.LoginView.as_view(template_name="registration/login.html",authentication_form=UserLoginForm),
          name='login'),
-    path('players/<int:id>',views.player_detail,name='player_detail')
+    path('players/<int:id>',views.player_detail,name='player_detail'),
+    path('players/ranking',views.player_ranking,name='player_ranking')
 ]

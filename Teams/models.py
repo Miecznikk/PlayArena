@@ -47,5 +47,8 @@ class Team(models.Model):
 
         return len(goals) - self.get_goals_scored()
 
+    def get_points(self):
+        return self.get_wins() * 3 + self.get_draws()
+
 
 # Create your models here.

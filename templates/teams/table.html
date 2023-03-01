@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-bordered mx-auto w-75">
+  <thead>
+    <tr>
+        <th class="col-md-1 text-center" scope="col">#</th>
+        <th class="col-md-3 text-center" scope="col">Drużyna</th>
+        <th class="col-md-1 text-center" scope="col">Punkty</th>
+        <th class="col-md-1 text-center" scope="col">Mecze</th>
+        <th class="col-md-1 text-center" scope="col">Zwyciestwa</th>
+        <th class="col-md-1 text-center" scope="col">Porazki</th>
+        <th class="col-md-1 text-center" scope="col">Remisy</th>
+        <th class="col-md-1 text-center" scope="col">Br. zdobote</th>
+        <th class="col-md-1 text-center" scope="col">Br. stracone</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for team in teams %}
+    <tr>
+        <th class="text-center" scope="row">{{ forloop.counter }}</th>
+        <td class="text-center"><a class="text-decoration-none fw-bold" href="{{ team.get_absolute_url }}">{{ team }}</a></td>
+        <td class="text-center">{{ team.get_points }}</td>
+        <td class="text-center">{{ team.get_matches|length }}</td>
+        <td class="text-center">{{ team.get_wins }}</td>
+        <td class="text-center">{{ team.get_loses }}</td>
+        <td class="text-center">{{ team.get_draws }}</td>
+        <td class="text-center">{{ team.get_goals_scored }}</td>
+        <td class="text-center">{{ team.get_goals_lost }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

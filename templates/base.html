@@ -22,6 +22,8 @@
                 Mecze
             </a>
         </li>
+        <li><a href="{% url 'users:player_ranking' %}">Najlepsi zawodnicy</a></li>
+        <li><a href="{% url 'teams:table' %}">Tabela</a></li>
 
         {% if user.isinst == 'player' %}
             {% if user.player.team == None %}

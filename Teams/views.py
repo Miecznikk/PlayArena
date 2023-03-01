@@ -5,8 +5,6 @@ from .forms import RegisterTeamForm
 from Users.models import Player
 from Teams.models import Team
 
-
-
 @login_required(login_url='/login')
 def team_register(request):
     if request.method == "POST":
@@ -33,4 +31,11 @@ def team_detail(request,slug):
     team = get_object_or_404(Team,slug=slug)
     players = Player.objects.filter(team=team)
     return render(request,'teams/team_detail.html',{'team':team,'players':players})
+
+def table_view(request):
+    teams = sorted(Team.objects.all(),key=lambda x: x.get_points(),reverse=True)
+    context = {
+        'teams': teams
+    }
+    return render(request,'teams/table.html',context=context)
 # Create your views here.
