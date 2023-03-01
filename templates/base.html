@@ -9,7 +9,7 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <p>zalogowano jako: {{ user }}</p>
+        <p>zalogowano jako HWDP JP: {{ user }}</p>
     {% endif %}
     <ul>
         <li><a href="{% url 'teams:teams' %}">Drużyny</a></li>
