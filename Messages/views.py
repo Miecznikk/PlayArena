@@ -74,6 +74,9 @@ def send_challenge(request,challenged_team = None):
 @login_required(login_url='/login')
 def accept_challenge(request,message):
     msg = get_object_or_404(Challenge,id = message)
+    matches_that_day = Match.get_matches_day_stadium(msg.date,msg.stadium)
+    if len(matches_that_day) > 0:
+        return redirect('errors:stadium_occupied',msg.challenging_team.get_captain().id)
     if date.today() < msg.date:
         Match.objects.create(team1 = msg.challenging_team,team2 = msg.challenged_team,stadium = msg.stadium,
                              date=msg.date,status = False,referee=Referee.get_suitable_referee())

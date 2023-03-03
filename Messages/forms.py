@@ -3,6 +3,7 @@ from datetime import date
 from .models import Message, Invite, Challenge
 from django.contrib.auth.models import User
 from Teams.models import Team
+from Matches.models import Match
 
 class SendMessage(forms.ModelForm):
 
@@ -51,7 +52,13 @@ class SendChallenge(forms.ModelForm):
 
     def clean(self):
         cd = self.cleaned_data
+        matches_that_day = Match.get_matches_day_stadium(cd.get('date'),cd.get('stadium'))
+
+        if len(matches_that_day) > 0:
+            raise forms.ValidationError('Tego dnia odbywa się już mecz na tym boisku')
+
         if cd.get('date') <= date.today():
             raise forms.ValidationError('Pomiędzy dniem dzisiejszym a meczowym musi być co najmniej jeden dzień')
+
         if cd.get('challenged_team') == self.team:
             raise forms.ValidationError('Nie możesz rzucić wyzwania samemu sobie!')

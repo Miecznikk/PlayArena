@@ -32,6 +32,7 @@ urlpatterns = [
     path('',include('Messages.urls',namespace='messages')),
     path('',include('Matches.urls',namespace='matches')),
     path('',include('django.contrib.auth.urls')),
+    path('',include('Errors.urls',namespace='errors'))
 ]
 
 if settings.DEBUG:
