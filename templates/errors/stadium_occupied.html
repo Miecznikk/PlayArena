@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4>Niestety ktoś w międzyczasie zarezerwował boisko tego dnia</h4>
+    <p>Skontaktuj się z przeciwnym kapitanem w sprawie zmiany terminu: </p>
+    <a class="btn btn-primary" href="{% url "messages:send_message_to" opposing_captain %}">Napisz</a>
+{% endblock %}

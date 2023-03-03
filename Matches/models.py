@@ -43,6 +43,10 @@ class Match(models.Model):
             return self.team2
         return None
 
+    @classmethod
+    def get_matches_day_stadium(cls,_date,_stadium):
+        return cls.objects.filter(date=_date,stadium=_stadium)
+
 
 class Goal(models.Model):
     scorer = models.ForeignKey(Player,null=True,on_delete=models.SET_NULL)
