@@ -36,3 +36,15 @@ class RegisterForm(UserCreationForm):
         position = Position.objects.filter(id=cd.get('position'))[0]
         player = Player.objects.create(user=user,first_name= fn,second_name=sn,last_name=ln,position=position)
         return user
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Player
+        fields = ['first_name','second_name','last_name','shirt_number','image']
+        labels = {
+            'first_name' : 'Imię',
+            'second_name' : 'Drugie Imię',
+            'last_name' : 'Nazwisko',
+            'shirt_number' : 'Numer koszulki',
+            'image' : 'Zdjęcie profilowe'
+        }
