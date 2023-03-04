@@ -3,7 +3,7 @@
 {% block content %}
     <p>{{ player }}</p>
     <img src="{{ player.image.url }}" width="150px" height="150px">
-    <p>Numer na koszulce: {{ player.shirt_number|yesno:'player.shirt_number,Nieokreslony' }}</p>
+    <p>Numer na koszulce: {{ player.shirt_number }}</p>
     <p>Bramki strzelone: {{ player.get_scored_goals }}</p>
     <p>Zawodnik meczu: {{ player.get_motm }}</p>
     {% if user.is_authenticated %}
