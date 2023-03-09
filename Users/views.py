@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from .forms import RegisterForm,ProfileEditForm
-from .models import Position,Player,App_User
+from .models import Position,Player,App_User,Team
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
@@ -56,3 +56,12 @@ def update_profile(request):
         }
         form = ProfileEditForm(initial=initial_player_values)
     return render(request,'players/profile.html',{'form':form})
+def best_of_all(request):
+    players = sorted(Player.objects.all(), key=lambda x: x.get_scored_goals(), reverse=True)[0:3]
+    teams = sorted(Team.objects.all(), key=lambda x: x.get_points(), reverse=True)[0:3]
+    context = {
+        'players': players,
+        'teams':teams
+    }
+    return render(request,'best_of_all.html', context=context)
+##DONE## VIEW WITH ARRAY OF BEST TEAMS AND PLAYERS FOR REWARDS#### ## TO CHECK !!!!
