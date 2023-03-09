@@ -11,5 +11,6 @@ urlpatterns = [
          name='login'),
     path('players/<int:id>',views.player_detail,name='player_detail'),
     path('players/ranking',views.player_ranking,name='player_ranking'),
-    path('players/profile',views.update_profile,name='profile')
+    path('players/profile',views.update_profile,name='profile'),
+    path('best_of_all/',views.best_of_all,name='best_of_all'),
 ]

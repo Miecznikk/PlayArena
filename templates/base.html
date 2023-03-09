@@ -36,7 +36,7 @@
             </li>
             <li><a href="{% url 'users:player_ranking' %}"><img src="../static/Assets/best.png"/>Najlepsi zawodnicy</a></li>
             <li><a href="{% url 'teams:table' %}"><img src="../static/Assets/table.png"/>Tabela</a></li>
-
+            <li><a href="{% url 'users:best_of_all' %}"><img src="../static/Assets/rewards.png"/>Nagrody</a></li>
             {% if user.isinst == 'player' %}
                 {% if user.player.team == None %}
                     <li>
@@ -56,8 +56,6 @@
                     <a href="{% url 'users:login' %}" ><img src="../static/Assets/logout.png"/>Zaloguj</a>
                 {% endif %}
             </li>
-
-
         </ul>
     </nav>
     <div class="main_content">
