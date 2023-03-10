@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+    background: linear-gradient(to left top,#373B44,#4286f4) no-repeat;
+}
+.main{
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.content {
+    position: relative;
+    width: 100%;
+    margin-left: 8rem;
+    color: white;
+}
