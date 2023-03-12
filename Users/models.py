@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.contrib.auth.models import User
@@ -58,9 +59,10 @@ class Referee(App_User):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
     @classmethod
-    def get_suitable_referee(cls):
-        return choice(cls.objects.all())
-
-
-# Create your models here.
-
+    def get_suitable_referee(cls, date: date):
+        from Matches.models import Match
+        free_referees = cls.objects.exclude(id=[match.referee.id for match in Match.objects.filter(date=date)])
+        try:
+            return choice(free_referees)
+        except IndexError:
+            return None
