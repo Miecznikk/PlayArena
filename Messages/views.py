@@ -79,7 +79,7 @@ def accept_challenge(request,message):
         return redirect('errors:stadium_occupied',msg.challenging_team.get_captain().id)
     if date.today() < msg.date:
         Match.objects.create(team1 = msg.challenging_team,team2 = msg.challenged_team,stadium = msg.stadium,
-                             date=msg.date,status = False,referee=Referee.get_suitable_referee())
+                             date=msg.date,status = False,referee=Referee.get_suitable_referee(date.today()))
     msg.delete()
     return redirect('messages:my_messages')
 
