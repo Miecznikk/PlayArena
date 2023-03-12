@@ -82,7 +82,3 @@ def accept_challenge(request,message):
                              date=msg.date,status = False,referee=Referee.get_suitable_referee(date.today()))
     msg.delete()
     return redirect('messages:my_messages')
-
-
-# Create your views here.
-

@@ -66,7 +66,3 @@ class Referee(App_User):
             return choice(free_referees)
         except IndexError:
             return None
-
-
-# Create your models here.
-
