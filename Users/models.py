@@ -61,7 +61,10 @@ class Referee(App_User):
     @classmethod
     def get_suitable_referee(cls, date: date):
         from Matches.models import Match
-        free_referees = cls.objects.exclude(id=[match.referee.id for match in Match.objects.filter(date=date)])
+        try:
+            free_referees = cls.objects.exclude(id=[match.referee.id for match in Match.objects.filter(date=date)])
+        except TypeError:
+            free_referees = cls.objects.all()
         try:
             return choice(free_referees)
         except IndexError:
