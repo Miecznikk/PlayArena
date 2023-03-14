@@ -105,3 +105,4 @@ venv.bak/
 
 pa_venv/
 .idea
+credentials.txt
