@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Team(models.Model):
     name = models.CharField(unique=True,max_length=30)
     slug = models.SlugField(unique=True,max_length=30)
-    image = models.ImageField(upload_to='images/teams')
+    image = models.ImageField(upload_to='images/teams',default='images/teams/Logo_PiS_Jasne.png')
 
     def __str__(self):
         return self.name

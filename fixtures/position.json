@@ -1,0 +1,30 @@
+[
+  {
+        "model": "Users.position",
+        "pk": 1,
+        "fields": {
+            "title": "Bramkarz"
+        }
+    },
+    {
+        "model": "Users.position",
+        "pk": 2,
+        "fields": {
+            "title": "Obrona"
+        }
+    },
+    {
+        "model": "Users.position",
+        "pk": 3,
+        "fields": {
+            "title": "Pomoc"
+        }
+    },
+    {
+        "model": "Users.position",
+        "pk": 4,
+        "fields": {
+            "title": "Atak"
+        }
+    }
+  ]

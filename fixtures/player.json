@@ -1,0 +1,76 @@
+[
+    {
+        "model": "Users.app_user",
+        "pk": 1,
+        "fields": {
+            "first_name": "Jan",
+            "last_name": "Kowalski"
+        }
+    },
+    {
+        "model": "Users.player",
+        "pk": 1,
+        "fields": {
+            "team": 1,
+            "user": 1,
+            "position": 1,
+            "shirt_number": 60,
+            "captain": true
+        }
+    },
+    {
+        "model": "Users.app_user",
+        "pk": 2,
+        "fields": {
+            "first_name": "Jan",
+            "last_name": "Nowak"
+        }
+    },
+    {
+        "model": "Users.player",
+        "pk": 2,
+        "fields": {
+            "team": 1,
+            "user": 2,
+            "position": 1,
+            "shirt_number": 65
+        }
+    },
+    {
+        "model": "Users.app_user",
+        "pk": 3,
+        "fields": {
+            "first_name": "Paweł",
+            "last_name": "Kowalski"
+        }
+    },
+    {
+        "model": "Users.player",
+        "pk": 3,
+        "fields": {
+            "team": 2,
+            "user": 3,
+            "position": 1,
+            "shirt_number": 51,
+            "captain": true
+        }
+    },
+    {
+        "model": "Users.app_user",
+        "pk": 4,
+        "fields": {
+            "first_name": "Paweł",
+            "last_name": "Nowak"
+        }
+    },
+    {
+        "model": "Users.player",
+        "pk": 4,
+        "fields": {
+            "team": 2,
+            "user": 4,
+            "position": 1,
+            "shirt_number": 89
+        }
+    }
+]

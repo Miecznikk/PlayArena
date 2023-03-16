@@ -1,0 +1,32 @@
+[
+  {
+        "model": "Users.app_user",
+        "pk": 5,
+        "fields": {
+            "first_name": "Szymon",
+            "last_name": "Marciniak"
+        }
+    },
+    {
+        "model": "Users.referee",
+        "pk": 5,
+        "fields": {
+            "user": 5
+        }
+    },
+  {
+        "model": "Users.app_user",
+        "pk": 6,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Depp"
+        }
+    },
+    {
+        "model": "Users.referee",
+        "pk": 6,
+        "fields": {
+            "user": 6
+        }
+    }
+]
