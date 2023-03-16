@@ -1,0 +1,18 @@
+[
+    {
+        "model": "Teams.team",
+        "pk": 1,
+        "fields": {
+            "name": "AC Pajace",
+            "slug": "ac_pajace"
+        }
+    },
+    {
+        "model": "Teams.team",
+        "pk": 2,
+        "fields": {
+            "name": "FC Po Nalewce",
+            "slug": "fc_po_nalewce"
+        }
+    }
+]

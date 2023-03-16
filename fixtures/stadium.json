@@ -1,0 +1,26 @@
+[
+    {
+        "model": "Matches.stadium",
+        "pk": 1,
+        "fields": {
+            "name": "Upalna",
+            "location": "Białystok"
+        }
+    },
+    {
+        "model": "Matches.stadium",
+        "pk": 2,
+        "fields": {
+            "name": "Bema",
+            "location": "Białystok"
+        }
+    },
+    {
+        "model": "Matches.stadium",
+        "pk": 3,
+        "fields": {
+            "name": "Stadion Miejski",
+            "location": "Białystok"
+        }
+    }
+]
