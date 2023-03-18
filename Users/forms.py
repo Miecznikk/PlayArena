@@ -4,6 +4,9 @@ from Teams.models import Team
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import transaction
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
+
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label='Nazwa użytkownika')
@@ -17,6 +20,8 @@ class RegisterForm(UserCreationForm):
     username = forms.CharField(max_length=30,required=True,label="Nazwa użytkownika")
     password1 = forms.CharField(label='Hasło',strip=False,widget=forms.PasswordInput())
     password2 = forms.CharField(label='Potwierdź hasło', strip=False, widget=forms.PasswordInput())
+
+    capthca = ReCaptchaField(widget=ReCaptchaV2Checkbox,label="")
 
     position = forms.ChoiceField(label = 'Pozycja',
                                  choices=(('1','Bramkarz'),('2','Obrona'),('3','Pomoc'),('4','Atak')),required=True)
