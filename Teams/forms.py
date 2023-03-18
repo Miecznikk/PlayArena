@@ -1,8 +1,13 @@
 from django import forms
 
 from .models import Team
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 class RegisterTeamForm(forms.ModelForm):
+
+    capthca = ReCaptchaField(widget=ReCaptchaV2Checkbox,label="")
+
     def __init__(self,*args,**kwargs):
         self.request = kwargs.pop('request')
         super(RegisterTeamForm, self).__init__(*args,**kwargs)
