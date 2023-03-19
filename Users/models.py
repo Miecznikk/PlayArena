@@ -30,6 +30,7 @@ class App_User(models.Model):
     second_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30)
     mod = models.BooleanField(default=False,null=False)
+    email = models.EmailField(max_length=100,default="samplemail@gmail.com")
 
     image = models.ImageField(upload_to='images/users', null=False, default='images/users/default_profile.png')
 

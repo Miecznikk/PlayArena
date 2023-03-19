@@ -21,6 +21,8 @@ class RegisterForm(UserCreationForm):
     password1 = forms.CharField(label='Hasło',strip=False,widget=forms.PasswordInput())
     password2 = forms.CharField(label='Potwierdź hasło', strip=False, widget=forms.PasswordInput())
 
+    email = forms.EmailField(label='Email',max_length=100)
+
     capthca = ReCaptchaField(widget=ReCaptchaV2Checkbox,label="")
 
     position = forms.ChoiceField(label = 'Pozycja',
@@ -28,7 +30,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username','first_name','second_name','last_name','password1','password2','position']
+        fields = ['username','email','first_name','second_name','last_name','password1','password2','position']
 
     @transaction.atomic
     def save(self):
