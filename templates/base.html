@@ -11,69 +11,75 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'body.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
 </head>
 <body >
-    <div class="main">
-        <nav class="Container_nav">
-            <div class="user">
-                {% if user.is_authenticated %}
-                    <img src="../static/Assets/user.png"/>
-                    <p>{{ user }}</p>
-                {% endif %}
-            </div>
+    <nav>
+        <input type="checkbox" id="check" class="check" />
+        <label for="check" class="menu_btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+        <nav class="drop_down_menu">
             <ul>
-
-                <li><a href="{% url 'teams:teams' %}"> <img src="../static/Assets/team.png"/> Drużyny</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'messages:my_messages' %}"> <img src="../static/Assets/message.png"/>Wiadomości</a></li>
+                      <li style="border-bottom: solid 2px white"><a href="{% url 'home' %}">Welcome {{user}}</a></li>
                 {% endif %}
-                <li>
-                    <a href="{% url 'matches:all_matches' %}">
-                        <img src="../static/Assets/matches.png"/>
-                        Mecze
-                    </a>
-                </li>
-                <li><a href="{% url 'users:player_ranking' %}"><img src="../static/Assets/best.png"/>Najlepsi zawodnicy</a></li>
-                <li><a href="{% url 'teams:table' %}"><img src="../static/Assets/table.png"/>Tabela</a></li>
-                <li><a href="{% url 'users:best_of_all' %}"><img src="../static/Assets/rewards.png"/>Nagrody</a></li>
+                <li><a href="{% url 'teams:teams' %}"> Drużyny</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'messages:my_messages' %}">Wiadomości</a></li>
+                {% endif %}
+                <li><a href="{% url 'matches:all_matches' %}">Mecze</a></li>
+                <li><a href="{% url 'users:player_ranking' %}">Najlepsi zawodnicy</a></li>
+                <li><a href="{% url 'teams:table' %}">Tabela</a></li>
+                <li><a href="{% url 'users:best_of_all' %}">Nagrody</a></li>
                 {% if user.isinst == 'player' %}
                     {% if user.player.team == None %}
-                        <li>
-                            <a href="{% url 'teams:team_register' %}">Załóż drużynę</a>
-                        </li>
+                <li> <a href="{% url 'teams:team_register' %}">Załóż drużynę</a></li>
                     {% endif %}
                     {% if user.player.captain %}
-                        <li>
-                            <a href="{% url 'messages:send_challenge' %}"><img src="../static/Assets/challenge.png"/>Rzuć wyzwanie</a>
-                        </li>
+                <li><a href="{% url 'messages:send_challenge' %}">Rzuć wyzwanie</a></li>
                     {% endif %}
                 {% endif %}
-                <li>
                     {% if user.is_authenticated %}
-                        <a href="{% url 'logout' %}" ><img src="../static/Assets/logout.png"/>Wyloguj</a>
+                        <li><a href="{% url 'logout' %}">Wyloguj</a></li>
                     {% else %}
-                        <a href="{% url 'users:login' %}" ><img src="../static/Assets/logout.png"/>Zaloguj</a>
+                        <li><a href="{% url 'users:login' %}">Zaloguj</a></li>
                     {% endif %}
-                </li>
             </ul>
         </nav>
-        <div class="content">
-            <footer>
-                <ul>
-                    <li ><a href="{% url 'matches:all_matches' %}">Rozgrywki</a></li>
-                    <li ><a href="{% url 'users:register' %}">Zarejestruj się</a></li>
-                    <li ><a href="https://www.sts.pl" >Obstawiaj tylko na STS!</a></li>
-                    <li ><a href="https://github.com/Miecznikk/PlayArena" >Github</a></li>
-                </ul>
-            </footer>
-            {% block content %}
+        <nav class="inline_menu">
+            <h1>mygames</h1>
 
-            {% endblock %}
+            <ul>
+                <li><a href="{% url 'teams:teams' %}"> Drużyny</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'messages:my_messages' %}">Wiadomości</a></li>
+                {% endif %}
+                <li><a href="{% url 'matches:all_matches' %}">Mecze</a></li>
+                <li><a href="{% url 'users:player_ranking' %}">Najlepsi zawodnicy</a></li>
+                <li><a href="{% url 'teams:table' %}">Tabela</a></li>
+                <li><a href="{% url 'users:best_of_all' %}">Nagrody</a></li>
+                {% if user.isinst == 'player' %}
+                    {% if user.player.team == None %}
+                <li> <a href="{% url 'teams:team_register' %}">Załóż drużynę</a></li>
+                    {% endif %}
+                    {% if user.player.captain %}
+                <li><a href="{% url 'messages:send_challenge' %}">Rzuć wyzwanie</a></li>
+                    {% endif %}
+                {% endif %}
+                    {% if user.is_authenticated %}
+                       <li><a href="{% url 'logout' %}">Wyloguj</a></li>
+                    {% else %}
+                       <li><a href="{% url 'users:login' %}">Zaloguj</a></li>
+                    {% endif %}
+            </ul>
+        </nav>
+    </nav>
+    <main class="container-fluid">
+        {% block content %}
 
-        </div>
-    </div>
-
+        {% endblock %}
+    </main>
 </body>
 </html>
