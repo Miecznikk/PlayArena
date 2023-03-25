@@ -7,7 +7,10 @@ from random import choice
 from django.urls import reverse
 
 def get_name(self):
-    return f'{self.first_name} {self.last_name}'
+    if not self.is_staff:
+        return f'{self.first_name} {self.last_name}'
+    else:
+        return f'{self.first_name} {self.last_name} [ADMIN]'
 
 def isinst(self):
     if hasattr(self,'player'):
