@@ -2,13 +2,14 @@
 {% block content %}
     <div>
         <div>
-            <h1>BEST PLAYER</h1>
+            <h1>BEST TEAMS</h1>
             {%for team in teams %}
-                <p>{{ team }} {{ team.get_goals_scored }} {{ team.get_goals_lost }}</p>
+                <p>{{ team }} <span style="color: green">{{ team.get_goals_scored }}</span> 
+                    <span style="color: red">{{ team.get_goals_lost }}</span></p>
             {% endfor %}
         </div>
         <div>
-        <h1>BEST TEAMS</h1>
+        <h1>BEST PLAYERS</h1>
             {%for player in players %}
                 <p>{{ player }} {{ player.get_scored_goals }}</p>
             {% endfor %}

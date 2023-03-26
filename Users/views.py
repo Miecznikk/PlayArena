@@ -13,9 +13,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .token import account_activation_token
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
-
 
 def sign_up(request):
     if request.method == "POST":
@@ -57,7 +56,7 @@ def activate(request,uidb64,token):
 def home_view(request):
     return render(request,'home.html',{})
 
-def player_detail(request,id):
+def player_detail(request,id):  
     player = get_object_or_404(Player,id=id)
     return render(request,'players/player_detail.html',{'player':player})
 
@@ -68,6 +67,7 @@ def player_ranking(request):
     }
     return render(request,'players/player_ranking.html',context=context)
 
+@login_required(login_url='/login')
 def update_profile(request):
     if request.method == 'POST':
         form = ProfileEditForm(request.POST,request.FILES,instance=request.user.player)
@@ -89,6 +89,7 @@ def update_profile(request):
         }
         form = ProfileEditForm(initial=initial_player_values)
     return render(request,'players/profile.html',{'form':form})
+
 def best_of_all(request):
     players = sorted(Player.objects.all(), key=lambda x: x.get_scored_goals(), reverse=True)[0:3]
     teams = sorted(Team.objects.all(), key=lambda x: x.get_points(), reverse=True)[0:3]
