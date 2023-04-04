@@ -27,8 +27,8 @@ def teams(request):
     teams = Team.objects.all()
     return render(request,'teams/all_teams.html',{'teams':teams})
 
-def team_detail(request,slug):
-    team = get_object_or_404(Team,slug=slug)
+def team_detail(request, slug):
+    team = get_object_or_404(Team, slug=slug)
     players = Player.objects.filter(team=team)
     return render(request,'teams/team_detail.html',{'team':team,'players':players})
 
@@ -38,4 +38,18 @@ def table_view(request):
         'teams': teams
     }
     return render(request,'teams/table.html',context=context)
-# Create your views here.
+
+def leave_team(request, slug):
+    team = get_object_or_404(Team, slug=slug)
+    player = Player.objects.filter(user=request.user).first()
+    if player.captain:
+        player.captain = False
+        players = Player.objects.filter(team=team).exclude(user=request.user)
+        if players:
+            players[0].captain = True
+            players[0].save()
+        else:
+            team.delete()
+    player.team = None
+    player.save()
+    return redirect('/home')
