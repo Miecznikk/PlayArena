@@ -3,3 +3,4 @@ pillow==9.4.0
 django-crispy-forms==2.0
 crispy-bootstrap5==0.7
 django-recaptcha==3.0.0
+six==1.16.0
