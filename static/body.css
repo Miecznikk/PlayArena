@@ -1,4 +1,6 @@
-
+body{
+    font-family: 'Carme', sans-serif;
+}
 .check{
     display: none;
 }
@@ -106,6 +108,11 @@
 .check:checked~.menu_btn span{
     background-color: white;
 }
+.inline_menu h1 a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
 @media screen and (max-width:1150px){
     .inline_menu ul{
         display: none;
@@ -117,7 +124,7 @@
         z-index: 1;
         animation: SLIDEINFROMRIGHT 0.5s   1 both;
     }
-    .check:checked~.inline_menu h1{
+    .check:checked~.inline_menu h1 a{
         color: white;
         z-index: 1;
     }
