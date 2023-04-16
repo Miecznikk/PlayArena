@@ -6,7 +6,11 @@
     <h3>Zawodnicy: </h3>
     <ul>
     {% for player in players %}
-        <li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
+        {% if player.captain%}
+            <li><a href="{{ player.get_absolute_url }}">{{ player }} (Kapitan)</a></li>
+        {% else %}
+            <li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
+        {% endif %}
     {% endfor %}
     </ul>
     <h3>Statystyki: </h3>
@@ -19,6 +23,9 @@
     {% if user.is_authenticated and user.isinst == 'player' %}
         {% if user.player.captain and user.player.team != team %}
             <a href="{% url 'messages:send_challenge_to' team.id %}" class="btn btn-primary">Rzuć wyzwanie</a>
+        {% endif %}
+        {% if user.player.team == team %}
+            <a href="{% url 'teams:leave_team' team.slug %}" class="btn btn-primary">Odejdź z drużyny</a>
         {% endif %}
     {% endif %}
 {% endblock %}

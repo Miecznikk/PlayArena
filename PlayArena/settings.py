@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# EMAIL CONFIG
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'playarena.django@gmail.com'
+EMAIL_HOST_PASSWORD = '***'
+EMAIL_PORT = 587
 
 # Application definition
 
@@ -43,8 +49,12 @@ INSTALLED_APPS = [
     'Teams',
     'Messages',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'captcha'
 ]
+
+RECAPTCHA_PUBLIC_KEY = '6LfpARIlAAAAACBn-kzwHOPWrPEKB9UwwAZ5Xnny'
+RECAPTCHA_PRIVATE_KEY = '6LfpARIlAAAAADu9OWLbCvNN8vhScU6GPCw8fmL5'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

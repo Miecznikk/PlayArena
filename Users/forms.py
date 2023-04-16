@@ -4,6 +4,9 @@ from Teams.models import Team
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import transaction
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
+
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label='Nazwa użytkownika')
@@ -18,12 +21,16 @@ class RegisterForm(UserCreationForm):
     password1 = forms.CharField(label='Hasło',strip=False,widget=forms.PasswordInput())
     password2 = forms.CharField(label='Potwierdź hasło', strip=False, widget=forms.PasswordInput())
 
+    email = forms.EmailField(label='Email',max_length=100)
+
+    capthca = ReCaptchaField(widget=ReCaptchaV2Checkbox,label="")
+
     position = forms.ChoiceField(label = 'Pozycja',
                                  choices=(('1','Bramkarz'),('2','Obrona'),('3','Pomoc'),('4','Atak')),required=True)
 
     class Meta:
         model = User
-        fields = ['username','first_name','second_name','last_name','password1','password2','position']
+        fields = ['username','email','first_name','second_name','last_name','password1','password2','position']
 
     @transaction.atomic
     def save(self):

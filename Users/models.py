@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.contrib.auth.models import User
@@ -6,7 +7,10 @@ from random import choice
 from django.urls import reverse
 
 def get_name(self):
-    return f'{self.first_name} {self.last_name}'
+    if not self.is_staff:
+        return f'{self.first_name} {self.last_name}'
+    else:
+        return f'{self.first_name} {self.last_name} [ADMIN]'
 
 def isinst(self):
     if hasattr(self,'player'):
@@ -29,6 +33,7 @@ class App_User(models.Model):
     second_name = models.CharField(max_length=30, null=True, blank=True)
     last_name = models.CharField(max_length=30)
     mod = models.BooleanField(default=False,null=False)
+    email = models.EmailField(max_length=100,default="samplemail@gmail.com")
 
     image = models.ImageField(upload_to='images/users', null=False, default='images/users/default_profile.png')
 
@@ -58,9 +63,13 @@ class Referee(App_User):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
     @classmethod
-    def get_suitable_referee(cls):
-        return choice(cls.objects.all())
-
-
-# Create your models here.
-
+    def get_suitable_referee(cls, date: date):
+        from Matches.models import Match
+        try:
+            free_referees = cls.objects.exclude(id=[match.referee.id for match in Match.objects.filter(date=date)])
+        except TypeError:
+            free_referees = cls.objects.all()
+        try:
+            return choice(free_referees)
+        except IndexError:
+            return None

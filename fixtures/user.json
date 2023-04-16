@@ -1,0 +1,74 @@
+[
+    {
+        "model": "auth.User",
+        "pk": 1,
+        "fields": {
+            "username": "team1_1",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "Jan",
+            "last_name": "Kowalski"
+        }
+    },
+    {
+        "model": "auth.User",
+        "pk": 2,
+        "fields": {
+            "username": "team1_2",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "Jan",
+            "last_name": "Nowak"
+        }
+    },
+    {
+        "model": "auth.User",
+        "pk": 3,
+        "fields": {
+            "username": "team2_1",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "Paweł",
+            "last_name": "Kowalski"
+        }
+    },
+    {
+        "model": "auth.User",
+        "pk": 4,
+        "fields": {
+            "username": "team2_2",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "Paweł",
+            "last_name": "Nowak"
+        }
+    },
+    {
+        "model": "auth.User",
+        "pk": 5,
+        "fields": {
+            "username": "referee1",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "Szymon",
+            "last_name": "Marciniak"
+        }
+    },
+    {
+        "model": "auth.User",
+        "pk": 6,
+        "fields": {
+            "username": "referee2",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "John",
+            "last_name": "Depp"
+        }
+    },
+    {
+        "model": "auth.User",
+        "pk": 7,
+        "fields": {
+            "username": "admin",
+            "password": "pbkdf2_sha256$390000$SggqRFTQhFXDuC4e2YCkhB$VnNn8LFLADpyRLaCdFwJXwc2iP+X20yFvundfwMr8Ho=",
+            "first_name": "Giga",
+            "last_name": "Admin",
+            "is_staff": true,
+            "is_superuser": true
+        }
+    }
+]

@@ -13,4 +13,5 @@ urlpatterns = [
     path('players/ranking',views.player_ranking,name='player_ranking'),
     path('players/profile',views.update_profile,name='profile'),
     path('best_of_all/',views.best_of_all,name='best_of_all'),
+    path('activate/<uidb64>/<token>/',views.activate,name='activate')
 ]

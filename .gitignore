@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+pa_venv/
+.idea
+credentials.txt
