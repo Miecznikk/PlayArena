@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="d-flex gap-4 container-team">
     {% for team in teams %}
-        <a class="fw-bold text-decoration-none text-black" href="{{ team.get_absolute_url }}">{{ team }}</a>
-        <img src="{{ team.image.url }}" alt="" style="width:150px;height:150px">
-        <br>
+        <div class="card p-5 ">
+            <a class="fw-bold text-decoration-none text-black d-flex flex-column text-center" href="{{ team.get_absolute_url }}">{{ team }}<img src="{{ team.image.url }}" alt="" style="width:150px;height:150px"></a>
+    {#        <img src="{{ team.image.url }}" alt="" style="width:150px;height:150px">#}
+            <br>
+        </div>
     {% endfor %}
+    </div>
 {% endblock %}
