@@ -4,15 +4,23 @@
     min-height: calc(100vh - 60px);
     background-image: url("/static/assets/Soccer-Wallpapers.jpg");
     background-repeat: no-repeat;
-    place-content: center;
+    background-attachment:fixed;
+    background-position:center;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .bg-img h1{
     width: max-content;
     font-size: 6rem;
     font-weight: bolder;
     color: white;
+    margin: 0 20px 0 20px;
+    text-align: center;
+}
+@media screen and (max-width:800px){
+    .bg-img h1{
+        font-size: 3rem;
+    }
 }
