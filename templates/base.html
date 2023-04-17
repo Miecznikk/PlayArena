@@ -82,6 +82,13 @@
 
         {% endblock %}
     </main>
-    <footer></footer>
+    <footer>
+        <ul>
+             {% if user.is_authenticated %}
+             {% else %}
+                 <li><a href="{% url 'users:register' %}">Rejestracja</a></li>
+             {% endif %}
+        </ul>
+    </footer>
 </body>
 </html>
