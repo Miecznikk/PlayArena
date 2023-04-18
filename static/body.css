@@ -155,3 +155,30 @@ footer{
     bottom: 0;
     background-color: black;
 }
+footer ul{
+    display: flex;
+    height: 100%;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+footer ul li {
+    font-size: 1.5rem;
+    transition: 0.5s;
+}
+footer ul li:hover {
+    color: white;
+    transform: translateX(10%);
+}
+footer ul li a{
+     display: inline;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+footer ul li a:hover{
+    color: white;
+}
