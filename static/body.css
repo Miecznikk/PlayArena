@@ -154,6 +154,7 @@ footer{
     position: fixed;
     bottom: 0;
     background-color: black;
+    z-index: 100;
 }
 footer ul{
     display: flex;
