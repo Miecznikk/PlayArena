@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load crispy_forms_tags %}
-    <p>send challenge</p>
-    <form method="POST" class="mx-auto d-block mt-5 text-center" style="width:300px">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-primary" type="submit">Wyzwij</button>
-    </form>
+    <div class="card p-5 text-white bg-dark">
+       <h4 class="text-center">Rzuc wyzwanie</h4>
+        <form method="POST" class="mx-auto d-block mt-5 text-center" style="width:300px">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary" type="submit">Wyzwij</button>
+        </form>
+    </div>
 {% endblock %}

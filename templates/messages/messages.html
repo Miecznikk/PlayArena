@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for message in messages %}
-        <p>{{ message.sender }}</p>
-        <p>{{ message.title }}</p>
-        <p>{{ message.description }}</p>
-        {% if message.check_instance == 'message' %}
-            <a class="btn btn-primary" href="{% url 'messages:send_message_to' message.sender.id %}">Odpowiedz</a>
-            <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Usuń</a>
-        {% elif message.check_instance == 'invite' %}
-            <a class="btn btn-primary" href="{% url 'messages:accept_invite' message.id %}">Przyjmij</a>
-            <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Odrzuć</a>
-        {% elif message.check_instance == 'challenge' %}
-            <a class="btn btn-primary" href="{% url 'messages:accept_challenge' message.id %}">Przyjmij</a>
-            <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Odrzuć</a>
-        {% endif %}
+    <div class="card p-5 text-white bg-dark" style="width: auto">
+        <h4 class="text-center">Panel obsługi wiadomości:</h4>
+        {% for message in messages %}
+            <p>{{ message.sender }}</p>
+            <p>{{ message.title }}</p>
+            <p>{{ message.description }}</p>
+            {% if message.check_instance == 'message' %}
+                <a class="btn btn-primary" href="{% url 'messages:send_message_to' message.sender.id %}">Odpowiedz</a>
+                <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Usuń</a>
+            {% elif message.check_instance == 'invite' %}
+                <a class="btn btn-primary" href="{% url 'messages:accept_invite' message.id %}">Przyjmij</a>
+                <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Odrzuć</a>
+            {% elif message.check_instance == 'challenge' %}
+                <a class="btn btn-primary" href="{% url 'messages:accept_challenge' message.id %}">Przyjmij</a>
+                <a class="btn btn-danger" href="{% url 'messages:delete_message' message.id %}">Odrzuć</a>
+            {% endif %}
 
-        <hr>
-    {% endfor %}
-    <a class="btn btn-primary" href="{% url 'messages:send_message' %}">Wyślij wiadomość</a>
+            <hr>
+        {% endfor %}
+        <a class="btn btn-primary" href="{% url 'messages:send_message' %}">Wyślij wiadomość</a>
+    </div>
 {% endblock %}
