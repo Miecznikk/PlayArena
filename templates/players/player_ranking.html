@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <table class="table table-stripped table-bordered mx-auto w-75">
-        <thead>
-            <tr>
-                <th class="text-center col-md-1" scope="col">#</th>
-                <th class="text-center col-md-7" scope="col">Gracz</th>
-                <th class="text-center col-md-2" scope="col">Bramki</th>
-                <th class="text-center col-md-2" scope="col">MOTM</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for player in players %}
-                <tr>
-                    <th class="text-center col-md-1">{{ forloop.counter }}</th>
-                    <th class="text-center col-md-7"><a class="text-decoration-none fw-bold" href="{{ player.get_absolute_url }}">{{ player }}</a></th>
-                    <th class="text-center col-md-2">{{ player.get_scored_goals }}</th>
-                    <th class="text-center col-md-2">{{ player.get_motm }}</th>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container-fluid ">
+        <div class="text-center table-responsive p-3 bg-dark rounded" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px 0px, rgba(0, 0, 0, 0.5) 0px 0px 4px 2px;">
+            <table  class="table table-hover table-dark table-curved">
+                <thead >
+                    <tr style="font-size: 32px">
+                        <th scope="col">#</th>
+                        <th scope="col">Gracz</th>
+                        <th scope="col">Bramki</th>
+                        <th scope="col">MOTM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                            <tr >
+                                <td >{{ forloop.counter }}</td>
+                                <td ><a class="text-decoration-none fw-bold text-white" href="{{ player.get_absolute_url }}">{{ player }}</a></td>
+                                <td >{{ player.get_scored_goals }}</td>
+                                <td >{{ player.get_motm }}</td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock %}
