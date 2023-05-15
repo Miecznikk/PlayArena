@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="card p-5 text-white bg-dark mt-4 d-flex d-column justify-content-center align-items-center">
     <p>{{ player }}</p>
-    <img src="{{ player.image.url }}" width="150px" height="150px">
+    <img src="{{ player.image.url }}" width="150px" height="150px" style="margin-bottom: 20px">
     <p>Numer na koszulce: {{ player.shirt_number }}</p>
     <p>Bramki strzelone: {{ player.get_scored_goals }}</p>
     <p>Zawodnik meczu: {{ player.get_motm }}</p>
     {% if user.is_authenticated %}
         <a href="{% url 'messages:send_message_to' player.id %}" class="btn btn-primary">Wyślij wiadomość</a>
     {% endif %}
+    </div>
 {% endblock %}

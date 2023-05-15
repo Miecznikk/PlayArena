@@ -2,11 +2,14 @@
 
 {% block content %}
     {% load crispy_forms_tags %}
-    <form method="POST" class="mx-auto d-block mt-5 text-center" style="width:300px">
-        <h4>Zaproś do drużyny</h4>
-        {{ form|crispy }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Zaproś</button>
-    </form>
+    <div class="card p-5 text-white bg-dark">
+        <h4 class="text-center">Wyślij wiadomość</h4>
+        <form method="POST" class="mx-auto d-block mt-5 text-center" style="width:300px">
+            <h4>Zaproś do drużyny</h4>
+            {{ form|crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Zaproś</button>
+        </form>
+    </div>
 
 {% endblock %}

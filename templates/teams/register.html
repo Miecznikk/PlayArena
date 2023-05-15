@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
-    <h1>Rejestracja drużyny</h1>
-    <form method="POST" enctype="multipart/form-data" class="mx-auto d-block mt-5 text-center" style="width:300px">
+{% load crispy_forms_tags %}
+    <div class="p-5 text-white bg-dark">
+    <h1 class="text-center">Rejestracja drużyny</h1>
+    <form method="POST" enctype="multipart/form-data" class="mx-auto d-block mt-5 text-center mb-5" style="width:300px">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Załóż Drużynę</button>
-
     </form>
+     </div>
 {% endblock %}

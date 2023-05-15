@@ -1,18 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
+    <div class="container-fluid ">
         <div>
-            <h1>BEST TEAMS</h1>
-            {%for team in teams %}
-                <p>{{ team }} <span style="color: green">{{ team.get_goals_scored }}</span> 
-                    <span style="color: red">{{ team.get_goals_lost }}</span></p>
-            {% endfor %}
+         <h1 style="font-size: 64px" class="mb-2">Najlepsza Drużyna</h1>
+            <div class="text-center table-responsive p-3 bg-dark rounded" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px 0px, rgba(0, 0, 0, 0.5) 0px 0px 4px 2px;">
+                <table  class="table table-hover table-dark table-curved">
+                    <thead >
+                        <tr style="font-size: 32px">
+                            <th scope="col">Nazwa</th>
+                            <th scope="col">Bramki zdobyte</th>
+                            <th scope="col">Bramki stracone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for team in teams %}
+                                <tr >
+                                    <td >{{ team }}</td>
+                                    <td >{{ team.get_goals_scored }}</td>
+                                    <td >{{ team.get_goals_lost }}</td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div>
-        <h1>BEST PLAYERS</h1>
-            {%for player in players %}
-                <p>{{ player }} {{ player.get_scored_goals }}</p>
-            {% endfor %}
-        </div>
+        <div class="mt-4">
+             <h1 style="font-size: 64px" class="mb-2">Najlepszy Zawodnik</h1>
+                <div class="text-center table-responsive p-3 bg-dark rounded" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px 0px, rgba(0, 0, 0, 0.5) 0px 0px 4px 2px;">
+                    <table  class="table table-hover table-dark table-curved">
+                        <thead >
+                            <tr style="font-size: 32px">
+                                <th scope="col">Imie i Nazwisko</th>
+                                <th scope="col">Bramki zdobyte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for player in players %}
+                                    <tr >
+                                        <td >{{ player }} </td>
+                                        <td >{{ player.get_scored_goals }}</td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
     </div>
 {% endblock %}

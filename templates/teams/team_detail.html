@@ -1,31 +1,63 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ team }}</h1>
-    <img src="{{ team.image.url }}" style="height: 100px;width: 100px">
-    <h3>Zawodnicy: </h3>
-    <ul>
-    {% for player in players %}
-        {% if player.captain%}
-            <li><a href="{{ player.get_absolute_url }}">{{ player }} (Kapitan)</a></li>
-        {% else %}
-            <li><a href="{{ player.get_absolute_url }}">{{ player }}</a></li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-    <h3>Statystyki: </h3>
-    <p>Mecze rozegrane: {{ team.get_matches|length }}</p>
-    <p>Zwycięstwa: {{ team.get_wins }}</p>
-    <p>Porażki: {{ team.get_loses }}</p>
-    <p>Remisy: {{ team.get_draws }}</p>
-    <p>Bramki strzelone: {{ team.get_goals_scored }}</p>
-    <p>Bramki stracone: {{ team.get_goals_lost }}</p>
-    {% if user.is_authenticated and user.isinst == 'player' %}
+     <div class="container-fluid ">
+     <div class="d-flex align-items-center mb-2"><h1 style="font-size: 64px">{{ team }}</h1>
+         <img src="{{ team.image.url }}" style="height: 100px;width: 100px">
+     </div>
+        <div class="text-center table-responsive p-3 bg-dark rounded" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px 0px, rgba(0, 0, 0, 0.5) 0px 0px 4px 2px;">
+            <table  class="table table-hover table-dark table-curved">
+                <thead >
+                    <tr style="font-size: 32px">
+                        <th scope="col">Zawodnicy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                            <tr >
+                            {% if player.captain%}
+                                  <td ><a class="text-decoration-none fw-bold text-white" href="{{ player.get_absolute_url }}">{{ player }} (Kapitan)</a></td>
+                                {% else %}
+                                 <td ><a class="text-decoration-none fw-bold text-white" href="{{ player.get_absolute_url }}">{{ player }}</a></td>
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                </tbody>
+            </table>
+        </div>
+     <h1 style="font-size: 64px" class="mb-2">Statystki</h1>
+     <div class="text-center table-responsive p-3 bg-dark rounded" style="box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px 0px, rgba(0, 0, 0, 0.5) 0px 0px 4px 2px;">
+            <table  class="table table-hover table-dark table-curved">
+                <thead >
+                    <tr style="font-size: 32px">
+                        <th scope="col">Mecze rozegrane: </th>
+                        <th scope="col">Zwycięstwa:  </th>
+                        <th scope="col">Porażki: </th>
+                        <th scope="col">Remisy: </th>
+                        <th scope="col">Bramki strzelone: </th>
+                        <th scope="col">Bramki stracone: </th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr >
+                            <td>{{ team.get_matches|length }}</td>
+                            <td>{{ team.get_wins }}</td>
+                            <td>{{ team.get_loses }}</td>
+                            <td>{{ team.get_draws }}</td>
+                            <td>{{ team.get_goals_scored }}</td>
+                            <td>{{ team.get_goals_lost }}</td>
+
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+      {% if user.is_authenticated and user.isinst == 'player' %}
         {% if user.player.captain and user.player.team != team %}
-            <a href="{% url 'messages:send_challenge_to' team.id %}" class="btn btn-primary">Rzuć wyzwanie</a>
+            <a href="{% url 'messages:send_challenge_to' team.id %}" class="btn btn-primary mt-3" style="float: right">Rzuć wyzwanie</a>
         {% endif %}
         {% if user.player.team == team %}
-            <a href="{% url 'teams:leave_team' team.slug %}" class="btn btn-primary">Odejdź z drużyny</a>
+            <a href="{% url 'teams:leave_team' team.slug %}" class="btn btn-primary mt-3" style="float: right">Odejdź z drużyny</a>
         {% endif %}
     {% endif %}
+    </div>
 {% endblock %}
