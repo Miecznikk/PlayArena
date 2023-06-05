@@ -1,7 +1,7 @@
 .bg-img{
     padding: 0;
     margin: 0;
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 110px);
     background-image: url("/static/assets/Soccer-Wallpapers.jpg");
     background-repeat: no-repeat;
     background-attachment:fixed;
