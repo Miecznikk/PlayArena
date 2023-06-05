@@ -34,7 +34,7 @@ def sign_up(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject,message,to=[to_email])
             email.send()
-            return redirect('users:confirmEmail',info = 'Potwierdź email, aby dokończyć proces rejestracji')
+            return render(request, 'confirm.html', {'info': 'Potwierdź email, aby dokończyć proces rejestracji'})
     else:
         form = RegisterForm()
 
@@ -99,5 +99,3 @@ def best_of_all(request):
     }
     return render(request,'best_of_all.html', context=context)
 ##DONE## VIEW WITH ARRAY OF BEST TEAMS AND PLAYERS FOR REWARDS#### ## TO CHECK !!!!
-def confirmEmail(request,info):
-    return render(request,'confirm.html',{'info':info})
