@@ -12,6 +12,13 @@ class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label='Nazwa użytkownika')
     password = forms.CharField(label='Hasło',widget=forms.PasswordInput())
 
+    error_messages = {
+        "invalid_login":
+            "Wprowadź prawidłowe dane"
+        ,
+        "inactive": "To konto jest nieaktywne",
+    }
+
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=30,required=True,label="Imię")
     second_name = forms.CharField(max_length=30,required=False,label="Drugie imię")
@@ -27,6 +34,10 @@ class RegisterForm(UserCreationForm):
 
     position = forms.ChoiceField(label = 'Pozycja',
                                  choices=(('1','Bramkarz'),('2','Obrona'),('3','Pomoc'),('4','Atak')),required=True)
+
+    error_messages = {
+        "password_mismatch": "Hasła nie są jednakowe",
+    }
 
     class Meta:
         model = User
