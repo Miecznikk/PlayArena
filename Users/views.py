@@ -34,7 +34,7 @@ def sign_up(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject,message,to=[to_email])
             email.send()
-            return HttpResponse('Potwierdź swój email aby dokończyć rejestrację')
+            return render(request, 'confirm.html', {'info': 'Potwierdź email, aby dokończyć proces rejestracji'})
     else:
         form = RegisterForm()
 
